@@ -23,4 +23,17 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
+
+  //calculator-specific colors
+  background: '#000',
+  text:{
+    primary: '#fff',
+    secondary: '#a0a0a0',
+  },
+  button:{
+    default: '#333',
+    operator: '#ff9500',
+    special: '#a6a6a6',
+    text:'#fff',
+  },
 };
