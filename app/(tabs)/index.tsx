@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Calculator from '@/components/Calculator'
+import { useRouter } from 'expo-router'
 
 const HomeScreen = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <Calculator />
+     
     </View>
   )
 }
