@@ -63,6 +63,23 @@ const Calculator:FC = () => {
     setWaitingForOperand(false)
   };
   
+   const buttons = [
+    ['C', '⌫', '%', '÷'],
+    ['7', '8', '9', '×'],
+    ['4', '5', '6', '-'],
+    ['1', '2', '3', '+'],
+    ['0', '.', '='],
+  ];
+
+   const getButtonColor = (button: string) => {
+    if (['÷', '×', '-', '+', '='].includes(button)) {
+      return Colors.button.operator;
+    }
+    if (['C', '⌫', '%'].includes(button)) {
+      return Colors.button.special;
+    }
+    return Colors.button.default;
+  };
   return (
     <View style={styles.container}>
       <View style={styles.displayContainer}>
@@ -72,7 +89,28 @@ const Calculator:FC = () => {
       </View>
 
       <View style={styles.buttonsContainer}>
-          
+          {buttons.map((row, rowIndex) => (
+          <View key={rowIndex} style={styles.row}>
+            {row.map((button) => (
+              <CalculatorButton
+                key={button}
+                title={button}
+                onPress={() => {
+                  if (button === 'C') clear();
+                  else if (button === '⌫') handleBackspace();
+                  else if (button === '%') handlePercent();
+                  else if (button === '=') handleEquals();
+                  else if (['÷', '×', '-', '+'].includes(button)) performOperation(button);
+                  else if (button === '.') inputDot();
+                  else inputNumber(button);
+                }}
+                color={getButtonColor(button)}
+                textColor={button === '=' ? Colors.button.text : Colors.button.text}
+                size={button === '0' ? 'double' : 'normal'}
+              />
+            ))}
+          </View>
+        ))}
       </View>
        
     </View>
